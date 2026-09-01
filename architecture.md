@@ -35,3 +35,25 @@ Frequently requested content is stored at edge locations for faster delivery.
 4. If the content is not cached, the CDN requests it from the origin storage.
 5. The CDN caches the retrieved content.
 6. Future users receive the content faster from the edge cache.
+
+
+   ## Origin Storage Tiering and Lifecycle Policy
+
+Origin storage keeps the original images and videos that are delivered through the CDN.
+
+A tiered storage strategy helps reduce storage costs by moving older or less frequently accessed content to lower-cost storage classes.
+
+### Recommended Storage Tiers
+
+| Content Type | Storage Tier | Purpose |
+|---|---|---|
+| Newly uploaded media | Standard / Hot Storage | Fast access for recently uploaded content |
+| Media not accessed for 30 days | Infrequent Access / Cool Storage | Lower-cost storage for less frequently used content |
+| Media not accessed for 90 days | Archive / Cold Storage | Long-term storage at a lower cost |
+
+### Lifecycle Policy
+
+```text
+Day 0   → Store new media in Standard Storage
+Day 30  → Move inactive media to Cool Storage
+Day 90  → Move inactive media to Archive Storage
