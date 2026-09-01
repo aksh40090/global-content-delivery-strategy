@@ -1,37 +1,26 @@
-# Latency Comparison
+## Simulated Latency Results
 
-## Objective
+Since access to a live CDN infrastructure was not available, the following results are simulation-based estimates created to demonstrate the expected impact of CDN edge caching.
 
-This experiment compares content delivery latency for users in two different regions, with and without a Content Delivery Network (CDN).
+| Region | Origin-Only Delivery | CDN-Backed Delivery | Estimated Improvement |
+|--------|---------------------|---------------------|----------------------|
+| India | 220 ms | 65 ms | 70% |
+| Germany | 180 ms | 55 ms | 69% |
 
-## Test Regions
+## Analysis
 
-- Asia – India
-- Europe – Germany
+### India
 
-## Expected Results
+Without a CDN, requests must travel from India to the origin server, resulting in higher network latency.
 
-| Region | Origin-Only Delivery | CDN-Backed Delivery | Improvement |
-|--------|---------------------|---------------------|-------------|
-| India | Higher latency | Lower latency | Significant |
-| Germany | Higher latency | Lower latency | Significant |
+With a CDN, cached content can be served from an edge location closer to the user, reducing the estimated latency from **220 ms to 65 ms**.
 
-## Why CDN Improves Latency
+### Germany
 
-Without a CDN, every user request must travel directly to the origin server. Users located far from the origin experience higher network delay.
+Without a CDN, users must directly access the origin server.
 
-With a CDN, cached images and videos are delivered from an edge location closer to the user. This reduces the distance travelled by the request and improves response time.
+With CDN edge caching, the estimated latency decreases from **180 ms to 55 ms**.
 
-## Testing Method
+## Important Note
 
-Latency can be tested using:
-
-- VPN or proxy for different regions
-- Browser developer tools
-- Online latency-testing tools
-
-The same media resource should be tested from both regions with and without CDN caching enabled.
-
-## Conclusion
-
-CDN-backed delivery provides lower latency, especially for users located far from the origin server. Edge caching improves the user experience by reducing response time and network delay.
+These values are simulated estimates for project demonstration purposes. Actual latency depends on the origin location, CDN provider, network conditions, cache hit ratio, and user location.
